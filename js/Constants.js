@@ -1,0 +1,2 @@
+PARADISE = "Paradise";
+HELL = "Hell";
