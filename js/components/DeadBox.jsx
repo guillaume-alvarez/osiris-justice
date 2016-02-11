@@ -33,14 +33,14 @@ var DeadBox = React.createClass({
 var DeadDesc = React.createClass({
     render: function() {
         var dead = this.props.dead;
-        var subs = dead.stories.map(function(story){
+        var stories = dead.stories.map(function(story){
           return (
             <li className="list-group-item">{story[0]}, {story[1]}, {story[2]}</li>
           );
         });
         return (
           <ul className="deadDesc list-group">
-            {subs}
+            {stories}
           </ul>
         );
     }
