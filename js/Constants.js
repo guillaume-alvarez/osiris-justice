@@ -1,2 +1,2 @@
-PARADISE = "Paradise";
-HELL = "Hell";
+var HEAVEN = "Heaven";
+var HELL = "Hell";

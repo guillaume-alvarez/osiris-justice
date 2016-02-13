@@ -15,27 +15,26 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/3.0.8/pixi.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.5/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.5/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flux/2.1.1/Flux.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/1.2.0/superagent.js"></script>
     <title>Osiris Justice</title>
 </head>
 
 <body>
     <div id="dead"></div>
 
-    <!-- Set some values using django template to be used in JS code-->
     <script type="text/javascript">
         var AppDispatcher = new Flux.Dispatcher();
     </script>
 
     <script type="text/javascript" src="js/tools/EventEmitter.js"></script>
+    <script type="text/javascript" src="js/Constants.js"></script>
     <script type="text/javascript" src="js/Actions.js"></script>
     <script type="text/javascript" src="js/stores/Store.js"></script>
     <script type="text/javascript" src="js/stores/DeadsStore.js"></script>
+    <script type="text/javascript" src="js/stores/StoriesStore.js"></script>
 
     <!-- babel will convert jsx from react files to standard js-->
     <script type="text/babel" src="js/components/DeadBox.jsx"></script>

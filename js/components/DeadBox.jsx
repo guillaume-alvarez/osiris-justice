@@ -1,19 +1,29 @@
 /**
- * Displays the selected place information.
+ * Displays the dead guys information.
  */
 var DeadBox = React.createClass({
-    getInitialState: function() {
-        return {selected: DEADS_STORE.selected()};
-    },
-    componentDidMount: function() {
-        DEADS_STORE.addListener(this.placeChanged);
-    },
-    componentWillUnmount: function() {
-        DEADS_STORE.removeListener(this.placeChanged );
+    createState: function() {
+        return {
+          dead: STORIES_STORE.dead(),
+          nbHeaven: DEADS_STORE.number(HEAVEN),
+          nbHell: DEADS_STORE.number(HELL),
+        };
     },
 
-    placeChanged: function() {
-        this.setState({selected: DEADS_STORE.selected()});
+    getInitialState: function() {
+        return this.createState();
+    },
+    componentDidMount: function() {
+        DEADS_STORE.addListener(this.deadsChanged);
+        STORIES_STORE.addListener(this.deadsChanged);
+    },
+    componentWillUnmount: function() {
+        DEADS_STORE.removeListener(this.deadsChanged);
+        STORIES_STORE.removeListener(this.deadsChanged);
+    },
+
+    deadsChanged: function() {
+        this.setState(this.createState());
     },
 
     render: function() {
@@ -25,6 +35,10 @@ var DeadBox = React.createClass({
                 <div className="panel-body">
                     <DeadDesc dead={this.state.dead} />
                 </div>
+                <div className="panel-footer">
+                    <FateButton name={HEAVEN} nb={this.state.nbHeaven} />
+                    <FateButton name={HELL} nb={this.state.nbHell} />
+                </div>
             </div>
         );
     }
@@ -33,15 +47,33 @@ var DeadBox = React.createClass({
 var DeadDesc = React.createClass({
     render: function() {
         var dead = this.props.dead;
+        if (!dead) {
+          return (
+            <ul className="deadDesc list-group">
+              <li key="NOT_LOADED">Searching for a dead soul...</li>
+            </ul>
+          );
+        }
+
         var stories = dead.stories.map(function(story){
           return (
-            <li className="list-group-item">{story[0]}, {story[1]}, {story[2]}</li>
+            <li key={story.reason+story.action+story.consequence} className="list-group-item">To {story.reason}, I {story.action} and {story.consequence}.</li>
           );
         });
         return (
           <ul className="deadDesc list-group">
             {stories}
           </ul>
+        );
+    }
+});
+
+var FateButton = React.createClass({
+    render: function() {
+        return (
+          <button className="fateButton">
+            {this.props.name} ({this.props.nb * 1} souls)
+          </button>
         );
     }
 });
