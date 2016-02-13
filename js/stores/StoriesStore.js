@@ -55,4 +55,6 @@ StoriesStore.prototype.handle = function (event) {
 var STORIES_STORE = new StoriesStore();
 AppDispatcher.register(STORIES_STORE.handle);
 
-$.getJSON('data/egypt_en.json', {}, Actions.dataLoaded);
+$.getJSON('data/egypt_en.json', function (data) {
+  Actions.dataLoaded(data);
+});
