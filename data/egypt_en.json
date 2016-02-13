@@ -16,7 +16,7 @@
     "follow a dream",
     "obey my master",
     "help my father",
-    "avoid the end of the world",
+    "avoid the end of the world"
   ],
   "actions": [
     "killed my father",
@@ -35,7 +35,7 @@
     "slapped the slave",
     "played with my little boy",
     "took my girl to the market",
-    "bought some water",
+    "bought some water"
   ],
   "consequences": [
     "was eaten by crodiles",
@@ -55,6 +55,6 @@
     "switched to women",
     "killed myself",
     "got killed by an aspic",
-    "lost a fight but not the war",
+    "lost a fight but not the war"
   ]
 }
