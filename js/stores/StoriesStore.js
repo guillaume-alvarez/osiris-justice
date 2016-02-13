@@ -40,10 +40,10 @@ StoriesStore.prototype.handle = function (event) {
             this._reasons = data["reasons"];
             this._actions = data["actions"];
             this._consequences = data["consequences"];
-            this._dead = _generateNewDead();
+            this._dead = this._generateNewDead();
             break;
         case Actions.ACTION_SELECT_FATE:
-            this._dead = _generateNewDead();
+            this._dead = this._generateNewDead();
             break;
         default:
             return true;
