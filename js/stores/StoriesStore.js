@@ -17,8 +17,15 @@ StoriesStore.prototype.dead = function () {
 
 StoriesStore.prototype._generateNewDead = function () {
     var stories = [];
-    for (i = Math.floor((Math.random() * 5) + 3); i > 0; i--) {
-      function rand(items) { return items[Math.floor(Math.random() * items.length)]; }
+    var used = [];
+    function rand(items) {
+      var item = items[Math.floor(Math.random() * items.length)];
+      for (it=0; it<3 && $.inArray(item, used); it++)
+        item = items[Math.floor(Math.random() * items.length)];
+      used.push(item);
+      return item;
+    }
+    for (i = Math.floor((Math.random() * 2) + 2); i > 0; i--) {
       stories.push({
         reason: rand(this._reasons),
         action: rand(this._actions),
