@@ -1,5 +1,6 @@
 var Actions = {
     ACTION_DATA_LOADED: "ACTION_DATA_LOADED",
+    ACTION_GAME_RESTART: "ACTION_GAME_RESTART",
     ACTION_SELECT_FATE: "ACTION_SELECT_FATE",
 
   /**
@@ -21,6 +22,12 @@ var Actions = {
         actionType: this.ACTION_SELECT_FATE,
         dead: dead,
         fate: fate,
+    });
+  },
+
+  gameRestart: function() {
+    AppDispatcher.dispatch({
+        actionType: this.ACTION_GAME_RESTART,
     });
   },
 

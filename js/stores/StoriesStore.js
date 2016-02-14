@@ -78,9 +78,7 @@ StoriesStore.prototype.handle = function (event) {
         case Actions.ACTION_DATA_LOADED:
             var data = event.data;
             function toObject (obj, array) {
-              array.forEach(function(p) {
-                obj[p] = 0;
-              });
+              array.forEach(function(p) { obj[p] = 0; });
             }
             toObject(STORIES_STORE._reasons, data["reasons"]);
             toObject(STORIES_STORE._actions, data["actions"]);
@@ -94,6 +92,19 @@ StoriesStore.prototype.handle = function (event) {
         case Actions.ACTION_SELECT_FATE:
             STORIES_STORE._updateBoss(event.dead.expects, event.fate);
             STORIES_STORE._updateStories(event.dead.stories, event.fate == HELL ? -1 : 1);
+            STORIES_STORE._dead = STORIES_STORE._generateNewDead();
+            break;
+        case Actions.ACTION_GAME_RESTART:
+            function reset(propositions) {
+              Object.getOwnPropertyNames(propositions).forEach(function(str) {
+                propositions[str] = 0;
+              });
+            }
+            reset(STORIES_STORE._reasons);
+            reset(STORIES_STORE._actions);
+            reset(STORIES_STORE._consequences);
+            STORIES_STORE._boss.tutorialIndex = 0;
+            STORIES_STORE._boss.says = STORIES_STORE._boss.tutorial[0];
             STORIES_STORE._dead = STORIES_STORE._generateNewDead();
             break;
         default:
