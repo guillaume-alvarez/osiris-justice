@@ -26,10 +26,10 @@ var GameOver = React.createClass({
     },
 
     onClickRestart: function() {
-        $('#gameOverModal').modal('hide');
         $('#gameOverModal').on('hidden.bs.modal', function (e) {
           Actions.gameRestart();
         });
+        $('#gameOverModal').modal('hide');
     },
 
     render: function() {
