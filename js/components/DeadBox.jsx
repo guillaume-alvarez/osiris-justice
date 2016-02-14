@@ -36,7 +36,7 @@ var DeadBox = React.createClass({
                     <DeadDesc dead={this.state.dead} />
                 </div>
                 <div className="panel-footer">
-                  <div class="btn-group" role="group">
+                  <div className="btn-group" role="group">
                     <FateButton fate={HEAVEN} nb={this.state.nbHeaven} dead={this.state.dead} />
                     <FateButton fate={HELL} nb={this.state.nbHell} dead={this.state.dead} />
                   </div>
