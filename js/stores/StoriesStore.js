@@ -15,12 +15,10 @@ StoriesStore.prototype.dead = function () {
     return this._dead;
 };
 
-function rand(items) {
-   return items[Math.floor(Math.random() * items.length)];
-}
 StoriesStore.prototype._generateNewDead = function () {
     var stories = [];
     for (i = Math.floor((Math.random() * 5) + 3); i > 0; i--) {
+      function rand(items) { return items[Math.floor(Math.random() * items.length)]; }
       stories.push({
         reason: rand(this._reasons),
         action: rand(this._actions),
@@ -37,18 +35,18 @@ StoriesStore.prototype.handle = function (event) {
     switch(event.actionType) {
         case Actions.ACTION_DATA_LOADED:
             var data = event.data;
-            this._reasons = data["reasons"];
-            this._actions = data["actions"];
-            this._consequences = data["consequences"];
-            this._dead = this._generateNewDead();
+            STORIES_STORE._reasons = data["reasons"];
+            STORIES_STORE._actions = data["actions"];
+            STORIES_STORE._consequences = data["consequences"];
+            STORIES_STORE._dead = STORIES_STORE._generateNewDead();
             break;
         case Actions.ACTION_SELECT_FATE:
-            this._dead = this._generateNewDead();
+            STORIES_STORE._dead = STORIES_STORE._generateNewDead();
             break;
         default:
             return true;
     }
-    this.emitChange();
+    STORIES_STORE.emitChange();
     return true;
 };
 

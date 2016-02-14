@@ -18,8 +18,8 @@ DeadsStore.prototype.handle = function (event) {
         case Actions.ACTION_SELECT_FATE:
             var dead = event.dead;
             dead.fate = event.fate;
-            this._deads[dead.id] = dead;
-            this._nb[event.fate]++;
+            STORIES_STORE._deads[dead.id] = dead;
+            STORIES_STORE._nb[event.fate]++;
             break;
         default:
             return true;
