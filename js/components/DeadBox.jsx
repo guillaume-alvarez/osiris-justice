@@ -54,10 +54,11 @@ var DeadDesc = React.createClass({
             <p className="deadDesc">Searching for a dead soul...</p>
           );
         }
+        var className = dead.fate == HELL ? "bg-danger" : " bg-success";
         return (
           <div className="deadDesc">
             <DeadStories dead={dead} />
-            <p>This dead soul expects {dead.fate}: "{dead.says}"</p>
+            <p className={className}>This dead soul expects {dead.fate}: "{dead.says}"</p>
           </div>
         );
     }
