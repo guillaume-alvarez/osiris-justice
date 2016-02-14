@@ -7,6 +7,10 @@ var DeadBox = React.createClass({
           dead: STORIES_STORE.dead(),
           nbHeaven: DEADS_STORE.number(HEAVEN),
           nbHell: DEADS_STORE.number(HELL),
+          boss: {
+            name: STORIES_STORE.bossName(),
+            says: STORIES_STORE.bossSays(),
+          },
         };
     },
 
@@ -33,6 +37,7 @@ var DeadBox = React.createClass({
                     <h2 className="panel-title">A man is dead, you choose his fate!</h2>
                 </div>
                 <div className="panel-body">
+                    <Boss boss={this.state.boss} />
                     <DeadDesc dead={this.state.dead} />
                 </div>
                 <div className="panel-footer">
@@ -46,6 +51,15 @@ var DeadBox = React.createClass({
     }
 });
 
+var Boss = React.createClass({
+    render: function() {
+        var boss = this.props.boss;
+        return (
+          <h4 className="boss"><i>{boss.name}</i>: {boss.says}</h4>
+        );
+    }
+});
+
 var DeadDesc = React.createClass({
     render: function() {
         var dead = this.props.dead;
@@ -54,11 +68,11 @@ var DeadDesc = React.createClass({
             <p className="deadDesc">Searching for a dead soul...</p>
           );
         }
-        var className = dead.fate == HELL ? "bg-danger" : " bg-success";
+        var className = dead.expects == HELL ? "bg-danger" : " bg-success";
         return (
           <div className="deadDesc">
             <DeadStories dead={dead} />
-            <p className={className}>This dead soul expects {dead.fate}: "{dead.says}"</p>
+            <p className={className}>This dead soul expects to go to {dead.expects}: "{dead.says}"</p>
           </div>
         );
     }

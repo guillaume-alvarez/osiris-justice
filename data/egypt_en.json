@@ -74,5 +74,26 @@
       "I don't believe in you anyway.",
       "In hell I'll be a king!"
     ]
+  },
+  "boss": {
+    "name": "Osiris",
+    "tutorial": [
+      "I let you handle the day-to-day Judging of Souls. Good ones go to Heaven, Bad ones to Hell. Simple enough?",
+      "Weight your Choices carefully: when sending a Soul to Heaven or Hell his Motives, Actions and Consequences are also Judged as Good or Evil.",
+      "Anyway, The Most Important Ihing is the Heart Weight: heavier than a Feather of Truth and Hell it is, Lighter and Heaven is deserved.",
+      "Please also take Care not to send Too Many Souls to Hell, these Legions of Dead may Revolt one Day.",
+      "Sending too many to Heaven is not a Good Idea either, how will they Obey Us if they do not Fear Our Judgment?",
+      "And finally please Respect their Beliefs, else they may start Not Believing in Us."
+    ],
+    "follows": [
+      "You have a Strong Sense of Justice.",
+      "This Soul certainly deserved It.",
+      "I really Trust Your Judgment."
+    ],
+    "contradicts": [
+      "You have a Peculiar Sense of Justice.",
+      "I guess I have to Trust Your Judgment.",
+      "Remember: in The End this was You Call."
+    ]
   }
 }
