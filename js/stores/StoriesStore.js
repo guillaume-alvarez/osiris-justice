@@ -3,9 +3,9 @@
  */
 function StoriesStore () {
     Store.call(this);
-    this._reasons = [];
-    this._actions = [];
-    this._consequences = [];
+    this._reasons = {};
+    this._actions = {};
+    this._consequences = {};
     this._dead = null;
 };
 StoriesStore.prototype = Object.create(Store.prototype);
@@ -18,11 +18,14 @@ StoriesStore.prototype.dead = function () {
 StoriesStore.prototype._generateNewDead = function () {
     var stories = [];
     var used = [];
-    function rand(items) {
+    var karma = 0;
+    function rand(obj) {
+      var items = Object.getOwnPropertyNames(obj);
       var item = items[Math.floor(Math.random() * items.length)];
       for (it=0; it<3 && $.inArray(item, used); it++)
         item = items[Math.floor(Math.random() * items.length)];
       used.push(item);
+      karma += obj[item];
       return item;
     }
     for (i = Math.floor((Math.random() * 2) + 2); i > 0; i--) {
@@ -35,19 +38,35 @@ StoriesStore.prototype._generateNewDead = function () {
     return {
       name: "Some guy",
       stories: stories,
+      fate: karma >= 0 ? HEAVEN : HELL,
     };
 };
+StoriesStore.prototype._updateStories = function (stories, karma) {
+  var store = this;
+  stories.forEach(function(story){
+    store._reasons[story.reason] += karma;
+    store._actions[story.action] += karma;
+    store._consequences[story.consequence] += karma;
+  });
+}
+
 
 StoriesStore.prototype.handle = function (event) {
     switch(event.actionType) {
         case Actions.ACTION_DATA_LOADED:
             var data = event.data;
-            STORIES_STORE._reasons = data["reasons"];
-            STORIES_STORE._actions = data["actions"];
-            STORIES_STORE._consequences = data["consequences"];
+            function toObject (obj, array) {
+              array.forEach(function(p) {
+                obj[p] = 0;
+              });
+            }
+            toObject(STORIES_STORE._reasons, data["reasons"]);
+            toObject(STORIES_STORE._actions, data["actions"]);
+            toObject(STORIES_STORE._consequences, data["consequences"]);
             STORIES_STORE._dead = STORIES_STORE._generateNewDead();
             break;
         case Actions.ACTION_SELECT_FATE:
+            STORIES_STORE._updateStories(event.dead.stories, event.fate == HELL ? -1 : 1);
             STORIES_STORE._dead = STORIES_STORE._generateNewDead();
             break;
         default:

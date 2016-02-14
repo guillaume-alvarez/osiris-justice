@@ -51,19 +51,27 @@ var DeadDesc = React.createClass({
         var dead = this.props.dead;
         if (!dead) {
           return (
-            <ul className="deadDesc list-group">
-              <li key="NOT_LOADED">Searching for a dead soul...</li>
-            </ul>
+            <p className="deadDesc">Searching for a dead soul...</p>
           );
         }
+        return (
+          <div className="deadDesc">
+            <DeadStories dead={dead} />
+            <p>This dead soul expects {dead.fate}</p>
+          </div>
+        );
+    }
+});
 
-        var stories = dead.stories.map(function(story){
+var DeadStories = React.createClass({
+    render: function() {
+        var stories = this.props.dead.stories.map(function(story){
           return (
             <li key={story.reason+story.action+story.consequence} className="list-group-item">To {story.reason}, I {story.action} and {story.consequence}.</li>
           );
         });
         return (
-          <ul className="deadDesc list-group">
+          <ul className="deadStories list-group">
             {stories}
           </ul>
         );

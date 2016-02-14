@@ -38,7 +38,7 @@
     "bought some water"
   ],
   "consequences": [
-    "was eaten by crodiles",
+    "was eaten by crocodiles",
     "earned candies",
     "received a kiss",
     "saw my loved one die",
@@ -56,5 +56,21 @@
     "killed myself",
     "got killed by an aspic",
     "lost a fight but not the war"
-  ]
+  ],
+  "wishes": {
+    "Heaven": [
+      "I am a good man.",
+      "I deserve to live happily ever after.",
+      "Please don't be too harsh...",
+      "My life was humble."
+    ],
+    "Hell": [
+      "I am a bad man.",
+      "I am a sinner.",
+      "I will kill you anyway!",
+      "I repent from my many sin, please...",
+      "I don't beleive in you anyway.",
+      "My life was great for me, you can't deny it!"
+    ]
+  }
 }
