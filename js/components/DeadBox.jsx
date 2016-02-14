@@ -36,8 +36,10 @@ var DeadBox = React.createClass({
                     <DeadDesc dead={this.state.dead} />
                 </div>
                 <div className="panel-footer">
-                    <FateButton name={HEAVEN} nb={this.state.nbHeaven} />
-                    <FateButton name={HELL} nb={this.state.nbHell} />
+                  <div className="btn-group btn-group-lg" role="group">
+                    <FateButton fate={HEAVEN} nb={this.state.nbHeaven} dead={this.state.dead} />
+                    <FateButton fate={HELL} nb={this.state.nbHell} dead={this.state.dead} />
+                  </div>
                 </div>
             </div>
         );
@@ -69,10 +71,13 @@ var DeadDesc = React.createClass({
 });
 
 var FateButton = React.createClass({
+    handleClick: function(event) {
+      Actions.selectFate(this.props.dead, this.props.fate);
+    },
     render: function() {
         return (
-          <button className="fateButton">
-            {this.props.name} ({this.props.nb * 1} souls)
+          <button type="button" className="fateButton btn btn-default" onClick={this.handleClick}>
+            {this.props.fate} ({this.props.nb * 1} souls)
           </button>
         );
     }
