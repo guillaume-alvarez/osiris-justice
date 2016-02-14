@@ -6,6 +6,7 @@ function StoriesStore () {
     this._reasons = {};
     this._actions = {};
     this._consequences = {};
+    this._wishes= {};
     this._dead = null;
 };
 StoriesStore.prototype = Object.create(Store.prototype);
@@ -19,26 +20,29 @@ StoriesStore.prototype._generateNewDead = function () {
     var stories = [];
     var used = [];
     var karma = 0;
-    function rand(obj) {
+    function rand_item(array) { return array[Math.floor(Math.random() * array.length)]; }
+    function rand_karma(obj) {
       var items = Object.getOwnPropertyNames(obj);
-      var item = items[Math.floor(Math.random() * items.length)];
+      var item = rand_item(items);
       for (it=0; it<3 && $.inArray(item, used); it++)
-        item = items[Math.floor(Math.random() * items.length)];
+        item = rand_item(items);
       used.push(item);
       karma += obj[item];
       return item;
     }
     for (i = Math.floor((Math.random() * 2) + 2); i > 0; i--) {
       stories.push({
-        reason: rand(this._reasons),
-        action: rand(this._actions),
-        consequence: rand(this._consequences),
+        reason: rand_karma(this._reasons),
+        action: rand_karma(this._actions),
+        consequence: rand_karma(this._consequences),
       });
     }
+    var fate = karma >= 0 ? HEAVEN : HELL;
     return {
       name: "Some guy",
       stories: stories,
-      fate: karma >= 0 ? HEAVEN : HELL,
+      fate: fate,
+      says: rand_item(this._wishes[fate]),
     };
 };
 StoriesStore.prototype._updateStories = function (stories, karma) {
@@ -63,6 +67,7 @@ StoriesStore.prototype.handle = function (event) {
             toObject(STORIES_STORE._reasons, data["reasons"]);
             toObject(STORIES_STORE._actions, data["actions"]);
             toObject(STORIES_STORE._consequences, data["consequences"]);
+            STORIES_STORE._wishes = data["wishes"];
             STORIES_STORE._dead = STORIES_STORE._generateNewDead();
             break;
         case Actions.ACTION_SELECT_FATE:

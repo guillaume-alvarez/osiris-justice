@@ -57,7 +57,7 @@ var DeadDesc = React.createClass({
         return (
           <div className="deadDesc">
             <DeadStories dead={dead} />
-            <p>This dead soul expects {dead.fate}</p>
+            <p>This dead soul expects {dead.fate}: "{dead.says}"</p>
           </div>
         );
     }

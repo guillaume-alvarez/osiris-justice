@@ -42,7 +42,7 @@
     "earned candies",
     "received a kiss",
     "saw my loved one die",
-    "was judge by Pharao",
+    "was judged by Pharao",
     "went to the desert",
     "retired to my house",
     "made a vow of poverty",
@@ -62,15 +62,17 @@
       "I am a good man.",
       "I deserve to live happily ever after.",
       "Please don't be too harsh...",
-      "My life was humble."
+      "My life was one of good actions.",
+      "My heart is light.",
+      "I have no reason to fear your judgment."
     ],
     "Hell": [
       "I am a bad man.",
       "I am a sinner.",
       "I will kill you anyway!",
-      "I repent from my many sin, please...",
-      "I don't beleive in you anyway.",
-      "My life was great for me, you can't deny it!"
+      "I repent from my so many sins, please...",
+      "I don't believe in you anyway.",
+      "In hell I'll be a king!"
     ]
   }
 }
