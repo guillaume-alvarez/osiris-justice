@@ -18,7 +18,7 @@ DeadsStore.prototype.number = function (fate) {
 DeadsStore.prototype.gameOverProgress = function (fate) {
     switch(fate) {
       case ATHEISM:
-        return this._nbAtheists - (this._nb[HEAVEN] + this._nb[HELL]) / 2;
+        return this._nbAtheists - (this._nb[HEAVEN] + this._nb[HELL] + 10) / 2;
       case HELL:
         return this._nb[HELL] - (this._nb[HEAVEN] + 10);
       case HEAVEN:
@@ -47,6 +47,9 @@ DeadsStore.prototype.handle = function (event) {
             dead.fate = event.fate;
             DEADS_STORE._deads[dead.id] = dead;
             DEADS_STORE._nb[event.fate]++;
+            if (dead.expects != dead.fate) {
+              DEADS_STORE._nbAtheists++;
+            }
             break;
         case Actions.ACTION_GAME_RESTART:
             DEADS_STORE._deads = {};
