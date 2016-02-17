@@ -44,11 +44,12 @@ StoriesStore.prototype._generateNewDead = function () {
         consequence: rand_karma(this._consequences),
       });
     }
-    var fate = karma >= 0 ? HEAVEN : HELL;
+    var fate = karma + Math.floor(Math.random() * 10) - 5 >= 0 ? HEAVEN : HELL;
     return {
       name: "Some guy",
       stories: stories,
       expects: fate,
+      karma: karma,
       says: rand_item(this._wishes[fate]),
     };
 };
