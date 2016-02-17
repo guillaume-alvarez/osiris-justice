@@ -37,7 +37,7 @@ StoriesStore.prototype._generateNewDead = function () {
       karma += obj[item];
       return item;
     }
-    for (i = Math.floor((Math.random() * 2) + 2); i > 0; i--) {
+    for (i = 0; i < 2; i++) {
       stories.push({
         reason: rand_karma(this._reasons),
         action: rand_karma(this._actions),
