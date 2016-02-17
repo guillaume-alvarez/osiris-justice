@@ -65,12 +65,20 @@ StoriesStore.prototype._updateBoss = function (expected, fate) {
   var boss = this._boss;
   boss.tutorialIndex++;
   var i = boss.tutorialIndex;
+  function text(text) { return {text: text}; }
+  function danger(text) { return {text: text, danger: true}; }
   if (i < boss.tutorial.length) {
-    boss.says = boss.tutorial[i];
+    boss.says = text(boss.tutorial[i]);
+  } else if (DEADS_STORE.gameOverProgress(ATHEISM) > -2) {
+    boss.says = danger(boss.risks[ATHEISM]);
+  } else if (DEADS_STORE.gameOverProgress(HEAVEN) > -2) {
+    boss.says = danger(boss.risks[HEAVEN]);
+  } else if (DEADS_STORE.gameOverProgress(HELL) > -2) {
+    boss.says = danger(boss.risks[HELL]);
   } else if (expected == fate) {
-    boss.says = rand_item(boss.follows);
+    boss.says = text(rand_item(boss.follows));
   } else {
-    boss.says = rand_item(boss.contradicts);
+    boss.says = text(rand_item(boss.contradicts));
   }
 };
 
@@ -87,7 +95,7 @@ StoriesStore.prototype.handle = function (event) {
             STORIES_STORE._wishes = data["wishes"];
             STORIES_STORE._boss = data["boss"];
             STORIES_STORE._boss.tutorialIndex = 0;
-            STORIES_STORE._boss.says = STORIES_STORE._boss.tutorial[0];
+            STORIES_STORE._boss.says = {text: STORIES_STORE._boss.tutorial[0]};
             STORIES_STORE._dead = STORIES_STORE._generateNewDead();
             break;
         case Actions.ACTION_SELECT_FATE:
@@ -105,7 +113,7 @@ StoriesStore.prototype.handle = function (event) {
             reset(STORIES_STORE._actions);
             reset(STORIES_STORE._consequences);
             STORIES_STORE._boss.tutorialIndex = 0;
-            STORIES_STORE._boss.says = STORIES_STORE._boss.tutorial[0];
+            STORIES_STORE._boss.says = {text: STORIES_STORE._boss.tutorial[0]};
             STORIES_STORE._dead = STORIES_STORE._generateNewDead();
             break;
         default:

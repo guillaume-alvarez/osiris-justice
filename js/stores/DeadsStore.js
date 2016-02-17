@@ -15,12 +15,25 @@ DeadsStore.prototype.constructor = DeadsStore;
 DeadsStore.prototype.number = function (fate) {
     return this._nb[fate];
 };
+DeadsStore.prototype.gameOverProgress = function (fate) {
+    switch(fate) {
+      case ATHEISM:
+        return this._nbAtheists - (this._nb[HEAVEN] + this._nb[HELL]) / 2;
+      case HELL:
+        return this._nb[HELL] - (this._nb[HEAVEN] + 10);
+      case HEAVEN:
+        return this._nb[HEAVEN] - (this._nb[HELL] + 10);
+    }
+};
+DeadsStore.prototype.isGameOver = function (fate) {
+    return this.gameOverProgress(fate) > 0;
+};
 DeadsStore.prototype.gameOver = function () {
-    if (this._nbAtheists > 30) {
+    if (this.isGameOver(ATHEISM)) {
       return "The livings no longer believe in Us!";
-    } else if (this._nb[HEAVEN] - this._nb[HELL] > 10) {
+    } else if (this.isGameOver(HEAVEN)) {
       return "The livings no longer fear Us!"
-    } else if (this._nb[HELL] - this._nb[HEAVEN] > 10) {
+    } else if (this.isGameOver(HELL)) {
       return "The deads are revolting against Us!"
     } else {
       return false;

@@ -94,6 +94,11 @@
       "You have a Peculiar Sense of Justice.",
       "I guess I have to Trust Your Judgment.",
       "Remember: in The End this was You Call."
-    ]
+    ],
+    "risks": {
+      "Atheism": "You must take your people expectations into account if you want them to beleive in Us!",
+      "Heaven": "Heavens are no longer deserved, people are becoming lazy, you must punish more of them!",
+      "Hell": "Beware, the dead souls in hell are planning to revolt, you must balance it with Heaven!"
+    }
   }
 }
