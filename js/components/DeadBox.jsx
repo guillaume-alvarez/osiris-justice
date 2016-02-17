@@ -13,6 +13,9 @@ var DeadBox = React.createClass({
           },
         };
     },
+    deadsChanged: function() {
+        this.setState(this.createState());
+    },
 
     getInitialState: function() {
         return this.createState();
@@ -24,10 +27,6 @@ var DeadBox = React.createClass({
     componentWillUnmount: function() {
         DEADS_STORE.removeListener(this.deadsChanged);
         STORIES_STORE.removeListener(this.deadsChanged);
-    },
-
-    deadsChanged: function() {
-        this.setState(this.createState());
     },
 
     render: function() {
