@@ -53,10 +53,16 @@ var DeadBox = React.createClass({
 var Boss = React.createClass({
     render: function() {
         var boss = this.props.boss;
-        var classname = boss.says.danger ? "boss bg-danger" : "boss"
-        return (
-          <h4 className={classname}><i>{boss.name}</i>: {boss.says.text}</h4>
-        );
+        if (boss.says) {
+            var classname = boss.says.danger ? "boss bg-danger" : "boss"
+            return (
+              <h4 className={classname}><i>{boss.name}</i>: {boss.says.text}</h4>
+            );
+        } else {
+            return (
+              <h4 className="boss">speechless!</h4>
+            );
+        }
     }
 });
 
