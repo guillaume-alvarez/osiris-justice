@@ -16,7 +16,9 @@
     "follow a dream",
     "obey my master",
     "help my father",
-    "avoid the end of the world"
+    "avoid the end of the world",
+    "have an interesting life",
+    "make the world a better place"
   ],
   "actions": [
     "killed my father",
@@ -80,8 +82,8 @@
     "tutorial": [
       "I let you handle the day-to-day Judging of Souls. Good ones go to Heaven, Bad ones to Hell. Simple enough?",
       "Weight your Choices carefully: when sending a Soul to Heaven or Hell his Motives, Actions and Consequences are also Judged as Good or Evil.",
-      "Anyway, The Most Important Thing is the Heart Weight: heavier than a Feather of Truth and Hell it is, Lighter and Heaven is deserved.",
-      "Please also take Care not to send Too Many Souls to Hell, these Legions of Dead may Revolt one Day.",
+      "Anyway, The Most Important Thing is the Heart Weight: heavier than the Feather of Truth and Hell it is, Lighter and Heaven is deserved.",
+      "Please also take Care not to send Too Many Souls to Hell, these Legions of Deads may Revolt one Day.",
       "Sending too many to Heaven is not a Good Idea either, how will they Obey Us if they do not Fear Our Judgment?",
       "And finally please Respect their Beliefs, else they may start Not Believing in Us."
     ],
@@ -93,10 +95,10 @@
     "contradicts": [
       "You have a Peculiar Sense of Justice.",
       "I guess I have to Trust Your Judgment.",
-      "Remember: in The End this was You Call."
+      "Remember: in The End this was Your Call."
     ],
     "risks": {
-      "Atheism": "You must take your people expectations into account if you want them to beleive in Us!",
+      "Atheism": "You must take your people expectations into account if you want them to believe in Us!",
       "Heaven": "Heavens are no longer deserved, people are becoming lazy, you must punish more of them!",
       "Hell": "Beware, the dead souls in hell are planning to revolt, you must balance it with Heaven!"
     }
