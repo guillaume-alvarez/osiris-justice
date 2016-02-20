@@ -53,16 +53,19 @@ var DeadBox = React.createClass({
 var Boss = React.createClass({
     render: function() {
         var boss = this.props.boss;
-        if (boss.says) {
-            var classname = boss.says.danger ? "boss bg-danger" : "boss"
+        if (!boss.says) {
             return (
-              <h4 className={classname}><i>{boss.name}</i>: {boss.says.text}</h4>
-            );
-        } else {
-            return (
-              <h4 className="boss">speechless!</h4>
+              <div className="boss">
+                <h4>speechless!</h4>
+              </div>
             );
         }
+        return (
+          <div className={boss.says.danger ? "boss bg-danger" : "boss"}>
+            <h4><i>{boss.name}</i>: {boss.says.text}</h4>
+            <h4>{boss.says.feedback}</h4>
+          </div>
+        );
     }
 });
 
@@ -74,11 +77,10 @@ var DeadDesc = React.createClass({
             <p className="deadDesc">Searching for a dead soul...</p>
           );
         }
-        var className = dead.expects == HELL ? "bg-danger" : " bg-success";
         return (
           <div className="deadDesc">
             <DeadStories dead={dead} />
-            <p className={className}>This dead soul expects to go to {dead.expects}: "{dead.says}"</p>
+            <p>Dead soul: "{dead.says}"</p>
           </div>
         );
     }

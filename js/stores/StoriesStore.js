@@ -32,7 +32,7 @@ StoriesStore.prototype._generateNewDead = function () {
     function rand_karma(obj) {
       var items = Object.getOwnPropertyNames(obj);
       var item = rand_item(items);
-      for (it=0; it<3 && $.inArray(item, used); it++)
+      for (it=0; it<10 && $.inArray(item, used); it++)
         item = rand_item(items);
       used.push(item);
       karma += obj[item];
@@ -45,13 +45,13 @@ StoriesStore.prototype._generateNewDead = function () {
         consequence: rand_karma(this._consequences),
       });
     }
-    var fate = karma + rand_int(-5, +5) >= 0 ? HEAVEN : HELL;
+    var fate = karma >= 0 ? HEAVEN : HELL;
     return {
       name: "Some guy",
       stories: stories,
       expects: fate,
       karma: karma,
-      says: rand_item(this._wishes[fate]),
+      says: rand_item(this._wishes[karma + rand_int(-3, +3) >= 0 ? HEAVEN : HELL]),
     };
 };
 StoriesStore.prototype._updateStories = function (stories, karma) {
@@ -81,6 +81,7 @@ StoriesStore.prototype._updateBoss = function (expected, fate) {
   } else {
     boss.says = text(rand_item(boss.contradicts));
   }
+  boss.says.feedback = expected == fate ? "You choose the correct fate." : "This soul wanted " + expected;
 };
 
 StoriesStore.prototype.handle = function (event) {
