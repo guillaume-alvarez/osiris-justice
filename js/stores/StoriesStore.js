@@ -107,7 +107,7 @@ StoriesStore.prototype.handle = function (event) {
         case Actions.ACTION_GAME_RESTART:
             function reset(propositions) {
               Object.getOwnPropertyNames(propositions).forEach(function(str) {
-                propositions[str] = 0;
+                propositions[str] = rand_int(-2, +2);
               });
             }
             reset(STORIES_STORE._reasons);
