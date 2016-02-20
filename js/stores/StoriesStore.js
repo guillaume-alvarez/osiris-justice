@@ -23,7 +23,8 @@ StoriesStore.prototype.bossSays = function () {
     return this._boss.says;
 };
 
-function rand_item(array) { return array[Math.floor(Math.random() * array.length)]; }
+function rand_int(start, end) { return Math.floor(Math.random() * (end - start)) + start; }
+function rand_item(array) { return array[rand_int(0, array.length)]; }
 StoriesStore.prototype._generateNewDead = function () {
     var stories = [];
     var used = [];
@@ -44,7 +45,7 @@ StoriesStore.prototype._generateNewDead = function () {
         consequence: rand_karma(this._consequences),
       });
     }
-    var fate = karma + Math.floor(Math.random() * 10) - 5 >= 0 ? HEAVEN : HELL;
+    var fate = karma + rand_int(-5, +5) >= 0 ? HEAVEN : HELL;
     return {
       name: "Some guy",
       stories: stories,
@@ -87,7 +88,7 @@ StoriesStore.prototype.handle = function (event) {
         case Actions.ACTION_DATA_LOADED:
             var data = event.data;
             function toObject (obj, array) {
-              array.forEach(function(p) { obj[p] = 0; });
+              array.forEach(function(p) { obj[p] = rand_int(-2, +2); });
             }
             toObject(STORIES_STORE._reasons, data["reasons"]);
             toObject(STORIES_STORE._actions, data["actions"]);
@@ -100,7 +101,7 @@ StoriesStore.prototype.handle = function (event) {
             break;
         case Actions.ACTION_SELECT_FATE:
             STORIES_STORE._updateBoss(event.dead.expects, event.fate);
-            STORIES_STORE._updateStories(event.dead.stories, event.fate == HELL ? -1 : 1);
+            STORIES_STORE._updateStories(event.dead.stories, event.fate == HELL ? -1 : +1);
             STORIES_STORE._dead = STORIES_STORE._generateNewDead();
             break;
         case Actions.ACTION_GAME_RESTART:
