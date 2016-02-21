@@ -81,7 +81,7 @@ StoriesStore.prototype._updateBoss = function (expected, fate) {
   } else {
     boss.says = text(rand_item(boss.contradicts));
   }
-  boss.says.feedback = expected == fate ? "You where right to chose " + fate : "This soul expected " + expected;
+  boss.says.feedback = expected == fate ? "You where right to chose " + fate : "That soul expected " + expected;
 };
 
 StoriesStore.prototype.handle = function (event) {
