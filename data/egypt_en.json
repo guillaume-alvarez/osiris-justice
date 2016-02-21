@@ -66,7 +66,8 @@
       "Please don't be too harsh...",
       "My life was one of good actions.",
       "My heart is light.",
-      "I have no reason to fear your judgment."
+      "I have no reason to fear your judgment.",
+      "Please, send me to my dear father."
     ],
     "Hell": [
       "I am a bad man.",
@@ -74,15 +75,16 @@
       "I will kill you anyway!",
       "I repent from my so many sins, please...",
       "I don't believe in you anyway.",
-      "In hell I'll be a king!"
+      "In hell I'll be a king!",
+      "I only deserve your justice."
     ]
   },
   "boss": {
     "name": "Osiris",
     "tutorial": [
       "I let you handle the day-to-day Judging of Souls. Good ones go to Heaven, Bad ones to Hell. Simple enough?",
+      "What is Good? What is Bad? These are difficult Questions, but Souls definitely have an Opinion and You must Respect it.",
       "Weight your Choices carefully: when sending a Soul to Heaven or Hell his Motives, Actions and Consequences are also Judged as Good or Evil.",
-      "Anyway, The Most Important Thing is the Heart Weight: heavier than the Feather of Truth and Hell it is, Lighter and Heaven is deserved.",
       "Please also take Care not to send Too Many Souls to Hell, these Legions of Deads may Revolt one Day.",
       "Sending too many to Heaven is not a Good Idea either, how will they Obey Us if they do not Fear Our Judgment?",
       "And finally please Respect their Beliefs, else they may start Not Believing in Us."
