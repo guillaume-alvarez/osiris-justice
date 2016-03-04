@@ -117,5 +117,5 @@ var FateButton = React.createClass({
 
 ReactDOM.render(
   <DeadBox />,
-  document.getElementById('dead')
+  document.getElementById('deadBox')
 );
