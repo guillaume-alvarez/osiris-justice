@@ -13,6 +13,9 @@ var ResultScreen = React.createClass({
     },
     componentDidMount: function() {
         DEADS_STORE.addListener(this.deadChanged);
+        $('#resultScreenModal').on('hidden.bs.modal', function (e) {
+          Actions.generateDead();
+        });
     },
     componentWillUnmount: function() {
         DEADS_STORE.removeListener(this.deadChanged);
@@ -23,13 +26,6 @@ var ResultScreen = React.createClass({
         if (this.state.dead.fate) {
           $('#resultScreenModal').modal('show');
         }
-    },
-
-    onClickContinue: function() {
-        $('#resultScreenModal').on('hidden.bs.modal', function (e) {
-          Actions.generateDead();
-        });
-        $('#resultScreenModal').modal('hide');
     },
 
     render: function() {
@@ -46,7 +42,7 @@ var ResultScreen = React.createClass({
                     <p className="lead"><strong>This dead soul expected {this.state.dead.expects}: {this.state.dead.says}</strong></p>
                   </div>
                   <div className="modal-footer">
-                    <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.onClickContinue}>Click anywhere to continue</button>
+                    <button type="button" className="btn btn-primary" data-dismiss="modal">Click anywhere to continue</button>
                   </div>
                 </div>
               </div>
