@@ -8,9 +8,14 @@ function DeadsStore () {
     this._nb[HEAVEN] = 0;
     this._nb[HELL] = 0;
     this._nbAtheists = 0;
+    this._lastDead = {};
 };
 DeadsStore.prototype = Object.create(Store.prototype);
 DeadsStore.prototype.constructor = DeadsStore;
+
+DeadsStore.prototype.lastDead = function () {
+    return this._lastDead;
+};
 
 DeadsStore.prototype.number = function (fate) {
     return this._nb[fate];
@@ -45,6 +50,7 @@ DeadsStore.prototype.handle = function (event) {
         case Actions.ACTION_SELECT_FATE:
             var dead = event.dead;
             dead.fate = event.fate;
+            DEADS_STORE._lastDead = dead;
             DEADS_STORE._deads[dead.id] = dead;
             DEADS_STORE._nb[event.fate]++;
             if (dead.expects != dead.fate) {

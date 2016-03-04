@@ -103,6 +103,8 @@ StoriesStore.prototype.handle = function (event) {
         case Actions.ACTION_SELECT_FATE:
             STORIES_STORE._updateBoss(event.dead.expects, event.fate);
             STORIES_STORE._updateStories(event.dead.stories, event.fate == HELL ? -1 : +1);
+            break;
+        case Actions.ACTION_GENERATE_DEAD:
             STORIES_STORE._dead = STORIES_STORE._generateNewDead();
             break;
         case Actions.ACTION_GAME_RESTART:
