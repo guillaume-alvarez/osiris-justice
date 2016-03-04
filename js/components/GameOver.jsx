@@ -12,13 +12,13 @@ var GameOver = React.createClass({
         return this.createState();
     },
     componentDidMount: function() {
-        DEADS_STORE.addListener(this.deadsChanged);
+        DEADS_STORE.addListener(this.notifyGameOver);
     },
     componentWillUnmount: function() {
-        DEADS_STORE.removeListener(this.deadsChanged);
+        DEADS_STORE.removeListener(this.notifyGameOver);
     },
 
-    deadsChanged: function() {
+    notifyGameOver: function() {
         this.setState(this.createState());
         if (this.state.text) {
           $('#gameOverModal').modal('show');

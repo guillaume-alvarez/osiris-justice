@@ -12,16 +12,16 @@ var ResultScreen = React.createClass({
         return this.createState();
     },
     componentDidMount: function() {
-        DEADS_STORE.addListener(this.deadChanged);
+        DEADS_STORE.addListener(this.displayChoiceResult);
         $('#resultScreenModal').on('hidden.bs.modal', function (e) {
           Actions.generateDead();
         });
     },
     componentWillUnmount: function() {
-        DEADS_STORE.removeListener(this.deadChanged);
+        DEADS_STORE.removeListener(this.displayChoiceResult);
     },
 
-    deadChanged: function() {
+    displayChoiceResult: function() {
         this.setState(this.createState());
         if (this.state.dead.fate) {
           $('#resultScreenModal').modal('show');
