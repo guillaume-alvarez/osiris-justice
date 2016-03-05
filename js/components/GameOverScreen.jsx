@@ -26,7 +26,7 @@ var GameOverScreen = React.createClass({
     },
 
     onClickRestart: function() {
-        $('#gameOverModal').on('hidden.bs.modal', function (e) {
+        $('#gameOverModal').one('hidden.bs.modal', function (e) {
           Actions.gameRestart();
         });
         $('#gameOverModal').modal('hide');

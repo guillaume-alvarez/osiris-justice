@@ -13,17 +13,18 @@ var ResultScreen = React.createClass({
     },
     componentDidMount: function() {
         DEADS_STORE.addListener(this.displayChoiceResult);
-        $('#resultScreenModal').on('hidden.bs.modal', function (e) {
-          Actions.generateDead();
-        });
     },
     componentWillUnmount: function() {
         DEADS_STORE.removeListener(this.displayChoiceResult);
     },
 
     displayChoiceResult: function() {
-        this.setState(this.createState());
-        if (this.state.dead.fate) {
+        var state = this.createState();
+        if (state.dead.fate) {
+          this.setState(state);
+          $('#resultScreenModal').one('hidden.bs.modal', function (e) {
+            Actions.generateDead();
+          });
           $('#resultScreenModal').modal('show');
         }
     },
