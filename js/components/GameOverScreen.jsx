@@ -1,7 +1,7 @@
 /**
  * Displays the game over screen.
  */
-var GameOver = React.createClass({
+var GameOverScreen = React.createClass({
     createState: function() {
         return {
           text: DEADS_STORE.gameOver(),
@@ -34,7 +34,7 @@ var GameOver = React.createClass({
 
     render: function() {
         return (
-          <div className="gameOver" >
+          <div className="gameOverScreen" >
             <div className="modal fade" id="gameOverModal" tabIndex="-1" role="dialog" aria-labelledby="gameOverLabel">
               <div className="modal-dialog modal-lg" role="document">
                 <div className="modal-content">
@@ -58,6 +58,6 @@ var GameOver = React.createClass({
 });
 
 ReactDOM.render(
-  <GameOver />,
-  document.getElementById('gameOver')
+  <GameOverScreen />,
+  document.getElementById('gameOverScreen')
 );
