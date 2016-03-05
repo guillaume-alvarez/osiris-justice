@@ -66,7 +66,6 @@ var Boss = React.createClass({
         return (
           <div className={boss.says.danger ? "boss bg-danger" : "boss"}>
             <h4><i>{boss.name}</i>: {boss.says.text}</h4>
-            <h4>{boss.says.feedback}</h4>
           </div>
         );
     }
@@ -82,7 +81,7 @@ var DeadDesc = React.createClass({
         }
         return (
           <div className="deadDesc">
-            <p>A newly dead soul:</p>
+            <p>A newly dead soul present his life before you:</p>
             <DeadStories dead={dead} />
           </div>
         );
