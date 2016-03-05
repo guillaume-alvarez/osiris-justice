@@ -7,6 +7,8 @@ var DeadBox = React.createClass({
           dead: STORIES_STORE.dead(),
           nbHeaven: DEADS_STORE.number(HEAVEN),
           nbHell: DEADS_STORE.number(HELL),
+          attempts: DEADS_STORE.attempts(),
+          failures: DEADS_STORE.failures(),
           boss: {
             name: STORIES_STORE.bossName(),
             says: STORIES_STORE.bossSays(),
@@ -42,6 +44,7 @@ var DeadBox = React.createClass({
                 <div className="panel-footer">
                   <div className="btn-group" role="group">
                     <FateButton fate={HEAVEN} nb={this.state.nbHeaven} dead={this.state.dead} />
+                    <ProgressButton failures={this.state.failures} attempts={this.state.attempts} />
                     <FateButton fate={HELL} nb={this.state.nbHell} dead={this.state.dead} />
                   </div>
                 </div>
@@ -110,6 +113,16 @@ var FateButton = React.createClass({
         return (
           <button type="button" className={className} onClick={this.handleClick}>
             {this.props.fate} ({this.props.nb * 1} souls)
+          </button>
+        );
+    }
+});
+
+var ProgressButton = React.createClass({
+    render: function() {
+        return (
+          <button type="button" className="progressButton btn btn-lg" disabled="disabled">
+            {this.props.attempts - this.props.failures} / {this.props.attempts} correct choices
           </button>
         );
     }

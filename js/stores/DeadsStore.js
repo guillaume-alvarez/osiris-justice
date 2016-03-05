@@ -7,7 +7,7 @@ function DeadsStore () {
     this._nb = {};
     this._nb[HEAVEN] = 0;
     this._nb[HELL] = 0;
-    this._nbAtheists = 0;
+    this._nb[ATHEISM] = 0;
     this._lastDead = {};
 };
 DeadsStore.prototype = Object.create(Store.prototype);
@@ -20,10 +20,16 @@ DeadsStore.prototype.lastDead = function () {
 DeadsStore.prototype.number = function (fate) {
     return this._nb[fate];
 };
+DeadsStore.prototype.failures = function (fate) {
+    return this._nb[ATHEISM];
+};
+DeadsStore.prototype.attempts = function (fate) {
+    return this._nb[HEAVEN] + this._nb[HELL];
+};
 DeadsStore.prototype.gameOverProgress = function (fate) {
     switch(fate) {
       case ATHEISM:
-        return this._nbAtheists - (this._nb[HEAVEN] + this._nb[HELL] + 10) / 2;
+        return this._nb[ATHEISM] - (this._nb[HEAVEN] + this._nb[HELL] + 10) / 2;
       case HELL:
         return this._nb[HELL] - (this._nb[HEAVEN] + 10);
       case HEAVEN:
@@ -54,14 +60,14 @@ DeadsStore.prototype.handle = function (event) {
             DEADS_STORE._deads[dead.id] = dead;
             DEADS_STORE._nb[event.fate]++;
             if (dead.expects != dead.fate) {
-              DEADS_STORE._nbAtheists++;
+              DEADS_STORE._nb[ATHEISM]++;
             }
             break;
         case Actions.ACTION_GAME_RESTART:
             DEADS_STORE._deads = {};
             DEADS_STORE._nb[HEAVEN] = 0;
             DEADS_STORE._nb[HELL] = 0;
-            DEADS_STORE._nbAtheists = 0;
+            DEADS_STORE._nb[ATHEISM] = 0;
             break;
         default:
             return true;
