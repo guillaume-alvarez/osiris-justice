@@ -32,7 +32,7 @@ StoriesStore.prototype._generateNewDead = function () {
     function rand_karma(obj) {
       var items = Object.getOwnPropertyNames(obj);
       var item = rand_item(items);
-      for (it=0; it<10 && $.inArray(item, used); it++)
+      for (it=0; it<20 && $.inArray(item, used) != -1; it++)
         item = rand_item(items);
       used.push(item);
       karma += obj[item];
