@@ -68,13 +68,14 @@ StoriesStore.prototype._updateBoss = function (expected, fate) {
   var i = boss.tutorialIndex;
   function text(text) { return {text: text}; }
   function danger(text) { return {text: text, danger: true}; }
+  var warnThreshold = DIFFICULTY - 2;
   if (i < boss.tutorial.length) {
     boss.says = text(boss.tutorial[i]);
-  } else if (DEADS_STORE.gameOverProgress(ATHEISM) > -2) {
+  } else if (DEADS_STORE.gameOverProgress(ATHEISM) > warnThreshold) {
     boss.says = danger(boss.risks[ATHEISM]);
-  } else if (DEADS_STORE.gameOverProgress(HEAVEN) > -2) {
+  } else if (DEADS_STORE.gameOverProgress(HEAVEN) > warnThreshold) {
     boss.says = danger(boss.risks[HEAVEN]);
-  } else if (DEADS_STORE.gameOverProgress(HELL) > -2) {
+  } else if (DEADS_STORE.gameOverProgress(HELL) > warnThreshold) {
     boss.says = danger(boss.risks[HELL]);
   } else if (expected == fate) {
     boss.says = text(rand_item(boss.follows));

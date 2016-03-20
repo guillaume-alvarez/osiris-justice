@@ -29,15 +29,15 @@ DeadsStore.prototype.attempts = function (fate) {
 DeadsStore.prototype.gameOverProgress = function (fate) {
     switch(fate) {
       case ATHEISM:
-        return this._nb[ATHEISM] - (this._nb[HEAVEN] + this._nb[HELL] + 10) / 2;
+        return this._nb[ATHEISM] - (this._nb[HEAVEN] + this._nb[HELL]) / 20;
       case HELL:
-        return this._nb[HELL] - (this._nb[HEAVEN] + 10);
+        return this._nb[HELL] - this._nb[HEAVEN];
       case HEAVEN:
-        return this._nb[HEAVEN] - (this._nb[HELL] + 10);
+        return this._nb[HEAVEN] - this._nb[HELL];
     }
 };
 DeadsStore.prototype.isGameOver = function (fate) {
-    return this.gameOverProgress(fate) > 0;
+    return this.gameOverProgress(fate) > DIFFICULTY;
 };
 DeadsStore.prototype.gameOver = function () {
     if (this.isGameOver(ATHEISM)) {
