@@ -22,6 +22,26 @@ StoriesStore.prototype.bossName = function () {
 StoriesStore.prototype.bossSays = function () {
     return this._boss.says;
 };
+StoriesStore.prototype.getStories = function (number, comparator) {
+    var stories = $.extend({}, this._reasons, this._actions, this._consequences);
+    var karmas = [];
+    for (key in stories) {
+      if (stories.hasOwnProperty(key)) { karmas.push(stories[key]); }
+    }
+    karmas.sort(comparator);
+    var result = [];
+    function firstStory (karma) {
+      for (story in stories) {
+        if (stories.hasOwnProperty(story) && stories[story] == karma && $.inArray(story, result) === -1) {
+          return story;
+        }
+      }
+    }
+    for (var i = 0; i<number; i++) {
+      result.push(firstStory(karmas[i]));
+    }
+    return result;
+};
 
 function rand_int(start, end) { return Math.floor(Math.random() * (end - start)) + start; }
 function rand_item(array) { return array[rand_int(0, array.length)]; }
@@ -32,13 +52,13 @@ StoriesStore.prototype._generateNewDead = function () {
     function rand_karma(obj) {
       var items = Object.getOwnPropertyNames(obj);
       var item = rand_item(items);
-      for (it=0; it<20 && $.inArray(item, used) != -1; it++)
+      for (var it=0; it<20 && $.inArray(item, used) != -1; it++)
         item = rand_item(items);
       used.push(item);
       karma += obj[item];
       return item;
     }
-    for (i = 0; i < 2; i++) {
+    for (var i = 0; i < 2; i++) {
       stories.push({
         reason: rand_karma(this._reasons),
         action: rand_karma(this._actions),
